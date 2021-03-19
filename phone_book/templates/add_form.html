@@ -1,0 +1,20 @@
+<form action="{{ url_for('add_phone', _external=True) }}" method="post">
+    <div class="mb-3">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class=flashes>
+                    {% for message in messages %}
+                        <li class="text-danger">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" aria-describedby="emailHelp" name="name">
+    </div>
+    <div class="mb-3">
+        <label for="phone" class="form-label">phone</label>
+        <input type="text" class="form-control" name="phone">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

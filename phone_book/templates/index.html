@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <title>Phone_book</title>
+</head>
+<body>
+<div class="container col-5">
+    <div>
+        {% include 'navbar.html' %}
+    </div>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Phone</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for foo in phone_book.items %}
+
+            <tr>
+                <th scope="row"></th>
+                <td>{{ foo.name }}</td>
+                <td>{{ foo.phone }}</td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+        <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+
+            {% for page_num in phone_book.iter_pages() %}
+
+                <li class="page-item">
+                    <a class="page-link" href="{{ url_for('index', page=page_num,_external=True) }}"> {{ page_num }} </a> </li>
+            {% endfor %}
+
+
+        </ul>
+    </nav>
+    <hr class="text-danger">
+    {% include 'add_form.html' %}
+
+</div>
+
+
+</body>
+</html>
